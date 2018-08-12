@@ -5,9 +5,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,17 +13,10 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 
 
@@ -62,43 +53,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             public void onClick(View view) {
                 Lat.setText(String.valueOf(Latitude));
                 Lng.setText(String.valueOf(Longtitude));
-                @SuppressLint("StaticFieldLeak") AsyncTask asyncTask = new AsyncTask() {
-                    @Override
-                    protected Object doInBackground(Object[] objects) {
-                        OkHttpClient client = new OkHttpClient();
-                        Request request = new Request.Builder()
-                                .url("http://arjie.cba.pl/Users.php")
-                                .build();
-                        Response response = null;
-                        try {
-                            response = client.newCall(request).execute();
-                            return  response.body().string();
 
-                        }catch (IOException e){
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
 
-                    @Override
-                    protected void onPostExecute(Object o) {
-                       // JsonOutput.setText(o.toString())
-                        des_Users_String =(String) o;;
-                    }
-                }.execute();
-             //   JsonOutput.setText(des_Markers_String);
-//                for(User x : ListOfUsers){
-//                    JsonOutput.setText(x.getNAME());
-//                }
-                if(des_Users_String !=""){
-                    Type UserListType = new TypeToken<ArrayList<User>>(){}.getType();
-                  ServerUsers = new Gson().fromJson(des_Users_String,UserListType);
-                }
-                if(ServerUsers !=null){
-                    for(User x : ServerUsers){
-                        Log.d("TUTAJ IMIE", x.getNAME());
-                    }
-                }
             }
         });
 
