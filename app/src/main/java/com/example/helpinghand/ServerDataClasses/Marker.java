@@ -1,4 +1,4 @@
-package com.example.helpinghand;
+package com.example.helpinghand.ServerDataClasses;
 public class Marker {
     private String rep_ID;
     private Double rep_LAT;

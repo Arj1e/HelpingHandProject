@@ -1,4 +1,4 @@
-package com.example.helpinghand;
+package com.example.helpinghand.ServerDataClasses;
 
 public class User {
     private String ID;
