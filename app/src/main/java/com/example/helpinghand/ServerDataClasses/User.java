@@ -8,6 +8,26 @@ public class User {
     private String FORENAME;
     private int POINTS;
 
+    public String getID() {
+        return ID;
+    }
+
+    public String getLOGIN() {
+        return LOGIN;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public String getFORENAME() {
+        return FORENAME;
+    }
+
+    public int getPOINTS() {
+        return POINTS;
+    }
+
     public User(String ID, String LOGIN, String PASSWORD, String NAME, String FORENAME, int POINTS){
         this.ID=ID;
         this.LOGIN=LOGIN;
