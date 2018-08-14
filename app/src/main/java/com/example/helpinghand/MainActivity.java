@@ -2,7 +2,6 @@ package com.example.helpinghand;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.helpinghand.ServerDataClasses.DatabaseHelper;
 import com.example.helpinghand.ServerDataClasses.DownloadUsers;
+import com.example.helpinghand.ServerDataClasses.MarkerSender;
 import com.example.helpinghand.ServerDataClasses.User;
 import com.google.gson.Gson;
 
@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     DatabaseHelper UserBase;
     private Double Latitude,Longtitude;
     private LocationManager locationManager;
+    MarkerSender markerSender= new MarkerSender();
+
     User[] UsersList;
 
     @SuppressLint("MissingPermission")
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Button CheckPossButton = (Button) findViewById(R.id.ChckPosBtn);
         final Button ChceckBase = (Button) findViewById(R.id.BaseBtn);
         CheckPossButton.setClickable(false);
-
        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10, this);
 
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         final TextView JsonOutput = (TextView)findViewById(R.id.JsonTxt);
         final DownloadUsers UsersJson = new DownloadUsers();
         UsersJson.LoadUsers();
-
 
         CheckPossButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,31 +66,32 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
            }
            ChceckBase.setVisibility(View.VISIBLE);
         }
-//        if(UsersJson != null) {
-//            String showUsers = "";
-//            for(User x:UsersList){
-//                showUsers +=x.getNAME()+" ";
-//            }
-//            JsonOutput.setText(showUsers);
-//        }
-            }
+   }
+
         });
         ChceckBase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Cursor res = UserBase.getData("95020407072");
-                StringBuffer buffer= new StringBuffer();
-                while (res.moveToNext()){
-                    buffer.append("NAME :"+ res.getString(0)+"\n");
-                }
-                JsonOutput.setText(buffer.toString());
+//                Cursor res = UserBase.getNameById("95020407072");
+//                StringBuffer buffer= new StringBuffer();
+//                while (res.moveToNext()){
+//                    buffer.append("NAME :"+ res.getString(0)+"\n");
+//                    JsonOutput.setText(buffer.toString());
+                markerSender.sendStandardMarker();
+
+//                }
+
             }
         });
+
 
 
 
 
     }
+
+
+
 
     @Override
     public void onLocationChanged(Location location) {

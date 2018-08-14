@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
             }
     }
-    public Cursor getData(String id){
+    public Cursor getNameById(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor getNameById = db.rawQuery("select NAME from "+TABLE_NAME+" Where ID= "+id,null);
         return  getNameById;
