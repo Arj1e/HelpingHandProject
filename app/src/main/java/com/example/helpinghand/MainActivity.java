@@ -6,7 +6,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import com.example.helpinghand.ServerDataClasses.DatabaseHelper;
 import com.example.helpinghand.ServerDataClasses.DownloadUsers;
 import com.example.helpinghand.ServerDataClasses.MarkerSender;
 import com.example.helpinghand.ServerDataClasses.User;
-import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,28 +54,31 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                 Lat.setText(String.valueOf(Latitude));
                 Lng.setText(String.valueOf(Longtitude));
-        UsersList= new Gson().fromJson(UsersJson.getUser(), User[].class);
-        for(User x : UsersList){
-           boolean IsSucces = UserBase.insertData(x.getID(),x.getLOGIN(),x.getPASSWORD(),x.getNAME(),x.getFORENAME(),x.getPOINTS(),null,null);
-           if(IsSucces){
-               Log.d("Insert of"+x.getID()+" :", "Succesfull ");
-           }else{
-               Log.d("Insert of"+x.getID()+" :","Failed");
-           }
-           ChceckBase.setVisibility(View.VISIBLE);
-        }
+//        UsersList= new Gson().fromJson(UsersJson.getUser(), User[].class);
+//        for(User x : UsersList){
+//                    boolean IsSucces = UserBase.insertData(x.getID(),x.getLOGIN(),x.getPASSWORD(),x.getNAME(),x.getFORENAME(),x.getPOINTS(),null,null);
+//                    if(IsSucces){
+//                        Log.d("Insert of"+x.getID()+" :", "Succesfull ");
+//                    }else{
+//                        Log.d("Insert of"+x.getID()+" :","Failed");
+//                    }
+//
+//                }
+                ChceckBase.setVisibility(View.VISIBLE);
    }
 
         });
         ChceckBase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Cursor res = UserBase.getNameById("95020407072");
-//                StringBuffer buffer= new StringBuffer();
-//                while (res.moveToNext()){
-//                    buffer.append("NAME :"+ res.getString(0)+"\n");
-//                    JsonOutput.setText(buffer.toString());
-                markerSender.sendStandardMarker();
+                String ID= "0000";
+               //User currentUser= new User(UserBase.getLoginById(ID),UserBase.getLoginById(ID),UserBase.getPasswordById(ID),UserBase.getNameById(ID),UserBase.getLastNamebyId(ID),UserBase.getPointsById(ID));
+
+              // JsonOutput.setText(currentUser.getFORENAME());
+
+//               String loaos= UserBase.getPasswordById("95020407072");
+//                JsonOutput.setText(loaos);
+              //  markerSender.sendStandardMarker();
 
 //                }
 

@@ -40,4 +40,28 @@ public class User {
     public String getNAME() {
         return NAME;
     }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public void setLOGIN(String LOGIN) {
+        this.LOGIN = LOGIN;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+
+    public void setNAME(String NAME) {
+        this.NAME = NAME;
+    }
+
+    public void setFORENAME(String FORENAME) {
+        this.FORENAME = FORENAME;
+    }
+
+    public void setPOINTS(int POINTS) {
+        this.POINTS = POINTS;
+    }
 }

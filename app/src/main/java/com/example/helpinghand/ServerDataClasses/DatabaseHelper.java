@@ -54,10 +54,99 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
             }
     }
-    public Cursor getNameById(String id){
+    public String getNameById(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor getNameById = db.rawQuery("select NAME from "+TABLE_NAME+" Where ID= "+id,null);
-        return  getNameById;
+       // Cursor res = UserBase.getNameById("95020407072");
+        StringBuffer buffer= new StringBuffer();
+        while (getNameById.moveToNext()) {
+            buffer.append(getNameById.getString(0));
 
+
+        }
+
+        return buffer.toString();
     }
+    public String getId(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor getNameById = db.rawQuery("select ID from "+TABLE_NAME+" Where ID= "+id,null);
+        // Cursor res = UserBase.getNameById("95020407072");
+        StringBuffer buffer= new StringBuffer();
+        while (getNameById.moveToNext()) {
+            buffer.append(getNameById.getString(0));
+
+
+        }
+
+        return buffer.toString();
+    }
+    public String getLastNamebyId(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor getNameById = db.rawQuery("select LASTNAME from "+TABLE_NAME+" Where ID= "+id,null);
+        // Cursor res = UserBase.getNameById("95020407072");
+        StringBuffer buffer= new StringBuffer();
+        while (getNameById.moveToNext()) {
+            buffer.append(getNameById.getString(0));
+
+
+        }
+
+        return buffer.toString();
+    }
+    public int getPointsById(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor getNameById = db.rawQuery("select POINTS from "+TABLE_NAME+" Where ID= "+id,null);
+        // Cursor res = UserBase.getNameById("95020407072");
+        StringBuffer buffer= new StringBuffer();
+        while (getNameById.moveToNext()) {
+            buffer.append(getNameById.getString(0));
+
+
+        }
+        int Points = Integer.parseInt(buffer.toString());
+        return (Points);
+    }
+    public String getLoginById(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor getNameById = db.rawQuery("select LOGIN from "+TABLE_NAME+" Where ID= "+id,null);
+        // Cursor res = UserBase.getNameById("95020407072");
+        StringBuffer buffer= new StringBuffer();
+        while (getNameById.moveToNext()) {
+            buffer.append(getNameById.getString(0));
+
+
+        }
+
+        return buffer.toString();
+    }
+//    public User getPasswordById(String id){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor getNameById = db.rawQuery("select PASSWORD from "+TABLE_NAME+" Where ID= "+id,null);
+//
+//        // Cursor res = UserBase.getNameById("95020407072");
+////        StringBuffer buffer= new StringBuffer();
+//        String id_num=null;
+//        String login=null;
+//        String password= null;
+//        String name= null;
+//        String lastname= null;
+//        String points= null;
+//        User outputUser;
+//        while (getNameById.moveToNext()) {
+//             id_num = getNameById.getString(0);
+//             login = getNameById.getString(1);
+//             password = getNameById.getString(2);
+//             name = getNameById.getString(3);
+//             lastname = getNameById.getString(4);
+//             points = getNameById.getString(5);
+//
+//        }
+//
+//        outputUser = new User(id,login,password,name,lastname,Integer.parseInt(points));
+//        return outputUser;
+//
+//    }
+
+
+
 }
