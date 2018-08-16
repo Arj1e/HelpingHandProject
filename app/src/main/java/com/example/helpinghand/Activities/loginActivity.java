@@ -1,8 +1,10 @@
 package com.example.helpinghand.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import com.example.helpinghand.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class loginActivity extends AppCompatActivity {
 

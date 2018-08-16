@@ -1,7 +1,8 @@
-package com.example.helpinghand;
+package com.example.helpinghand.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.helpinghand.R;
 import com.example.helpinghand.ServerDataClasses.DatabaseHelper;
 import com.example.helpinghand.ServerDataClasses.DownloadUsers;
 import com.example.helpinghand.ServerDataClasses.MarkerSender;
@@ -71,9 +73,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         ChceckBase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ID= "0000";
                //User currentUser= new User(UserBase.getLoginById(ID),UserBase.getLoginById(ID),UserBase.getPasswordById(ID),UserBase.getNameById(ID),UserBase.getLastNamebyId(ID),UserBase.getPointsById(ID));
-
+                launchMapAct();
               // JsonOutput.setText(currentUser.getFORENAME());
 
 //               String loaos= UserBase.getPasswordById("95020407072");
@@ -92,7 +93,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
 
-
+private void launchMapAct(){
+    Intent startMapAct = new Intent(this, mapActivity.class);
+    startActivity( startMapAct);
+};
 
     @Override
     public void onLocationChanged(Location location) {
