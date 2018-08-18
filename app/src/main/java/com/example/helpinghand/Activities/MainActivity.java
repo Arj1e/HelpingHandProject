@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
 private void launchMapAct(){
-    Intent startMapAct = new Intent(this, mapActivity.class);
+    Intent startMapAct = new Intent(this, loginActivity.class);
     startActivity( startMapAct);
 };
 
