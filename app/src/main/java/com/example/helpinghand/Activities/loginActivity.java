@@ -58,12 +58,7 @@ public class loginActivity extends AppCompatActivity {
                         launchMain();
                         break;
                     }else {
-                        Context context = getApplicationContext();
-                        CharSequence text = "Incorrect login or password!";
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                        loginPln.setText("Incorect login or password");
                     }
                 }
 
@@ -76,8 +71,8 @@ public class loginActivity extends AppCompatActivity {
 
     }
     private void launchMain(){
-        Intent startMapAct = new Intent(this, MainActivity.class);
-        startActivity( startMapAct);
+        Intent startBase = new Intent(this, BaseActivity.class);
+        startActivity( startBase);
     };
 
 }
