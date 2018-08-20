@@ -17,6 +17,7 @@ import com.example.helpinghand.ServerDataClasses.DatabaseHelper;
 import com.example.helpinghand.ServerDataClasses.DownloadUsers;
 import com.example.helpinghand.ServerDataClasses.MarkerSender;
 import com.example.helpinghand.ServerDataClasses.User;
+import com.google.gson.Gson;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                 Lat.setText(String.valueOf(Latitude));
                 Lng.setText(String.valueOf(Longtitude));
-//        UsersList= new Gson().fromJson(UsersJson.getUser(), User[].class);
+        UsersList= new Gson().fromJson(UsersJson.getUser(), User[].class);
 //        for(User x : UsersList){
 //                    boolean IsSucces = UserBase.insertData(x.getID(),x.getLOGIN(),x.getPASSWORD(),x.getNAME(),x.getFORENAME(),x.getPOINTS(),null,null);
 //                    if(IsSucces){
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 //
 //                }
                 ChceckBase.setVisibility(View.VISIBLE);
+                for(User x:UsersList){
+                    Lat.setText(x.getNAME());
+                }
    }
 
         });

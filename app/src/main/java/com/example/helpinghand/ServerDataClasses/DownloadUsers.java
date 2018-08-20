@@ -1,6 +1,8 @@
 package com.example.helpinghand.ServerDataClasses;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -9,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -55,23 +58,21 @@ public class DownloadUsers {
 
         return null;
     }
-    public void isExist(final String login, final String password){
-
+    public Boolean isExist(final String login, final String password){
+        final Boolean[] Existance = new Boolean[1];
         AsyncTask asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] objects) {
                 OkHttpClient client = new OkHttpClient();
-                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-                Map<String, String> params = new HashMap<String, String>();
+                RequestBody requestBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart("Login", login)
+                        .addFormDataPart("Password", password)
+                        .build();
 
-                params.put("Login", login);
-                params.put("Password", password);
-
-                JSONObject parameter = new JSONObject(params);
-                RequestBody body = RequestBody.create(JSON, parameter.toString());
                 Request request = new Request.Builder()
-                        .url("http://arjie.cba.pl/IsExist.php")
-                        .put(body)
+                        .url("http://arjie.cba.pl/IsExistPost.php")
+                        .post(requestBody)
                         .build();
                 Response response = null;
                 try {
@@ -86,11 +87,20 @@ public class DownloadUsers {
 
             @Override
             protected  void onPostExecute(Object o) {
-                // JsonOutput.setText(o.toString())
-                isExist= o.toString();
+
+
+
+                if(o.toString().equals("[true]")){
+                Existance[0] = true;
+
+                }else{
+                Existance[0] = false;
+
+                }
             }
 
         }.execute();
+        return Existance[0];
     }
 
 }
