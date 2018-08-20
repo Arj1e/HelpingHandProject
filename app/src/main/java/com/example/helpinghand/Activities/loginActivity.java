@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.helpinghand.R;
+import com.example.helpinghand.ServerDataClasses.DatabaseHelper;
 import com.example.helpinghand.ServerDataClasses.DownloadUsers;
 import com.example.helpinghand.ServerDataClasses.User;
 import com.google.gson.Gson;
@@ -21,10 +22,12 @@ public class loginActivity extends AppCompatActivity {
 
     User[] UsersList;
     String login,password;
+    DatabaseHelper UserBase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        UserBase = new DatabaseHelper(this);
         Button loginBtn= (Button) findViewById(R.id.loginBtn);
         final EditText loginPln= (EditText) findViewById(R.id.loginPln);
         final EditText passwordPln = (EditText)findViewById(R.id.passwordPln);
@@ -48,6 +51,15 @@ public class loginActivity extends AppCompatActivity {
                 for(User x: UsersList){
 
                     if(x.getLOGIN().equals(login) && x.getPASSWORD().equals(password)) {
+
+                        boolean IsSucces = UserBase.insertData(x.getID(),x.getLOGIN(),x.getPASSWORD(),x.getNAME(),x.getFORENAME(),x.getPOINTS(),null,null);
+                    if(IsSucces){
+                        Log.d("Insert of"+x.getID()+" :", "Succesfull ");
+                    }else{
+                        Log.d("Insert of"+x.getID()+" :","Failed");
+                    }
+
+
                         Context context = getApplicationContext();
                         CharSequence text = "Loged in as: " + x.getNAME() + " " + x.getFORENAME();
                         int duration = Toast.LENGTH_SHORT;
